@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Market.Pages.ProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Market.Resources.Languages"
+    xmlns:system="clr-namespace:System;assembly=netstandard"
+    xmlns:vm="clr-namespace:Market.ViewModels"
+    x:DataType="vm:ProfileViewModel"
+    Shell.BackgroundColor="#ff79b0"
+    Shell.ForegroundColor="White">
+
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Fill">
+            <Label
+                FontFamily="IRANSansBold"
+                FontSize="Medium"
+                HeightRequest="50"
+                Text="{Static local:AppResources.Profile}"
+                TextColor="White"
+                VerticalOptions="CenterAndExpand"
+                VerticalTextAlignment="Center" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding OnNotificationCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="MaterialIconsOutlined-Regular"
+                    Glyph="&#xe7f7;"
+                    Size="32"
+                    Color="White" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem Order="Secondary" Text="Item 3" />
+        <ToolbarItem Order="Secondary" Text="Item 4" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+            <HorizontalStackLayout Margin="20">
+
+                <Label
+                    FontFamily="IranSans"
+                    HorizontalTextAlignment="Start"
+                    SemanticProperties.HeadingLevel="Level1"
+                    Style="{StaticResource SubHeadline}"
+                    WidthRequest="220">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontFamily="IRANSans" Text="{Binding FirstName, StringFormat='{0} جون '}" />
+                            <Span
+                                FontFamily="IRANSans"
+                                FontSize="Small"
+                                Text="{Binding Age, StringFormat=' {0} ساله '}" />
+                            <Span Text="{x:Static system:Environment.NewLine}" />
+                            <Span
+                                FontAttributes="Bold"
+                                FontFamily="IRANSans"
+                                FontSize="Medium"
+                                Text="مادر  " />
+                            <Span
+                                FontFamily="IRANSans"
+                                FontSize="Small"
+                                Text="{Binding Children, StringFormat='{0}'}" />
+                            <Span Text="{x:Static system:Environment.NewLine}" />
+
+                            <Span
+                                FontAttributes="Bold"
+                                FontFamily="IRANSans"
+                                FontSize="Medium"
+                                Text="باردار  " />
+                            <Span
+                                FontFamily="IRANSans"
+                                FontSize="Small"
+                                Text="{Binding GestationalAge, StringFormat='{0}'}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Image
+                    Aspect="AspectFit"
+                    HeightRequest="120"
+                    SemanticProperties.Description="dot net bot in a race car number eight"
+                    Source="mother.png" />
+
+            </HorizontalStackLayout>
+
+            <Label
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                SemanticProperties.HeadingLevel="Level2"
+                Style="{StaticResource SubHeadline}"
+                Text="Welcome to &#10;.NET Multi-platform App UI" />
+
+            <Button
+                x:Name="CounterBtn"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Fill"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Text="My Location" />
+
+
+
+
+            <CollectionView
+                x:Name="collectionView"
+                Margin="20,0,20,30"
+                FlowDirection="RightToLeft"
+                SelectionMode="Single">
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        HorizontalItemSpacing="8"
+                        Orientation="Vertical"
+                        Span="2"
+                        VerticalItemSpacing="8" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeShape="RoundRectangle 5">
+
+                            <VerticalStackLayout>
+                                <ImageButton
+                                    Margin="5"
+                                    HeightRequest="80"
+                                    Source="{Binding Image}">
+                                    <!--<ImageButton.Source>
+                                        <FontImageSource
+                                            FontFamily="MaterialIconsOutlined-Regular"
+                                            Glyph="{Binding Icon}"
+                                            Size="50"
+                                            Color="Black" />
+                                    </ImageButton.Source>-->
+                                </ImageButton>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*" />
+                                        <ColumnDefinition Width="3*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        Margin="5,0"
+                                        FontFamily="IRANSansUltraLight"
+                                        FontSize="10"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding Name}"
+                                        VerticalTextAlignment="End" />
+                                    <Border
+                                        Grid.Column="1"
+                                        Margin="0,-1"
+                                        BackgroundColor="Black"
+                                        HorizontalOptions="Start"
+                                        Stroke="Transparent"
+                                        StrokeShape="RoundRectangle 0,10,0,0"
+                                        StrokeThickness="2"
+                                        WidthRequest="80">
+                                        <Label
+                                            Margin="4,0"
+                                            FontFamily="IRANSansUltraLight"
+                                            FontSize="10"
+                                            HorizontalTextAlignment="Start"
+                                            Text="تومان 1,000,000"
+                                            TextColor="White"
+                                            VerticalTextAlignment="End" />
+                                    </Border>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    Ali Rasoulian
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </VerticalStackLayout>
+
+
+    </ScrollView>
+
+</ContentPage>

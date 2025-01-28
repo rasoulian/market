@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Market.Pages.VitrinPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Market.Resources.Languages"
+    Title="{Static local:AppResources.Vitrin}"
+    Shell.BackgroundColor="#ff79b0"
+    Shell.ForegroundColor="White">
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Fill">
+            <Label
+                FontFamily="IRANSansBold"
+                FontSize="Medium"
+                HeightRequest="50"
+                Text="{Static local:AppResources.Vitrin}"
+                TextColor="White"
+                VerticalOptions="CenterAndExpand"
+                VerticalTextAlignment="Center" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding OnBillCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="MaterialIconsOutlined-Regular"
+                    Glyph="&#xe870;"
+                    Size="32"
+                    Color="White" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+
+    <ScrollView>
+
+        <VerticalStackLayout>
+            <CarouselView
+                x:Name="carouselView"
+                IndicatorView="indicatorView"
+                Loop="True">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="10" BackgroundColor="#E0E4FF">
+                            <ImageButton Source="{Binding Image}" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontFamily="IRANSansBold"
+                                FontSize="Medium"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Title}"
+                                TextColor="Black" />
+                            <Label
+                                FontFamily="IRANSansUltraLight"
+                                FontSize="Small"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Description}"
+                                TextColor="Black" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <IndicatorView
+                x:Name="indicatorView"
+                Margin="5"
+                HorizontalOptions="Center"
+                IndicatorColor="Green"
+                SelectedIndicatorColor="Red" />
+
+            <Picker x:Name="picker" IsVisible="false" />
+
+
+
+            <BoxView
+                Margin="20"
+                BackgroundColor="Red"
+                HorizontalOptions="FillAndExpand"
+                Color="Red" />
+
+            <CollectionView
+                x:Name="collectionView"
+                Margin="20,0,20,30"
+                FlowDirection="RightToLeft"
+                SelectionMode="Single">
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        HorizontalItemSpacing="8"
+                        Orientation="Vertical"
+                        Span="2"
+                        VerticalItemSpacing="8" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeShape="RoundRectangle 5">
+
+                            <VerticalStackLayout>
+                                <ImageButton
+                                    Margin="5"
+                                    HeightRequest="80"
+                                    Source="{Binding Image}">
+                                    <!--<ImageButton.Source>
+                                        <FontImageSource
+                                            FontFamily="MaterialIconsOutlined-Regular"
+                                            Glyph="{Binding Icon}"
+                                            Size="50"
+                                            Color="Black" />
+                                    </ImageButton.Source>-->
+                                </ImageButton>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*" />
+                                        <ColumnDefinition Width="3*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        Margin="5,0"
+                                        FontFamily="IRANSansUltraLight"
+                                        FontSize="10"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding Name}"
+                                        VerticalTextAlignment="End" />
+                                    <Border
+                                        Grid.Column="1"
+                                        Margin="0,-1"
+                                        BackgroundColor="Black"
+                                        HorizontalOptions="Start"
+                                        Stroke="Transparent"
+                                        StrokeShape="RoundRectangle 0,10,0,0"
+                                        StrokeThickness="2"
+                                        WidthRequest="80">
+                                        <Label
+                                            Margin="4,0"
+                                            FontFamily="IRANSansUltraLight"
+                                            FontSize="10"
+                                            HorizontalTextAlignment="Start"
+                                            Text="تومان 1,000,000"
+                                            TextColor="White"
+                                            VerticalTextAlignment="End" />
+                                    </Border>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    Ali Rasoulian
+                </CollectionView.EmptyView>
+            </CollectionView>
+
+
+        </VerticalStackLayout>
+
+
+    </ScrollView>
+</ContentPage>
